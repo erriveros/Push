@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {MainFeed, Login, Camera, Challenges, Market} from "./components/screens";
+import {MainFeed, Login, Camera, Challenges, Market, SignUp} from "./components/screens";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +10,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const AuthStack = createStackNavigator();
+
+function AuthStackScreen() {
+  <AuthStack.Navigator>
+    <AuthStack.Screen name="Login" component={Login}/>
+    <AuthStack.Screen name="SignUp" component={SignUp}/>
+  </AuthStack.Navigator>
+}
+
 function Home() {
   return (
     <NavigationContainer independent={true}>
@@ -57,7 +66,6 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} options={{title: 'Push'}}/>
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
