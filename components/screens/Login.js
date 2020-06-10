@@ -1,22 +1,23 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, TextInput, Button} from 'react-native';
+import SignUp from './SignUp';
+
 
 class Login extends Component {
-
 
     login(){
         this.props.navigation.navigate('Home');
     }
+
+    signUp(){
+        ;
+    }
     render() {
         return (
-            <TouchableOpacity 
-            style= {styles.loginButton}
-            onPress={() => this.login()}>
-                <View>
-                     <Text>Login</Text>
-                </View>
-            </TouchableOpacity>
-            
+            <View>
+                <Button title="Sign In" onPress={() => this.login()}/>
+                <Button title="Sign Up" onPress={() => this.props.navigation.push('SignUp')}/>
+            </View>
         )
     }
 }
@@ -32,4 +33,6 @@ const styles = StyleSheet.create({
      }
 
 }) 
+
+
 export default Login

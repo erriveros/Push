@@ -4,6 +4,7 @@ import Camera from './Camera'
 import Market from './Market'
 import Challenges from './Challenges'
 import SignUp from './SignUp'
+import Loading from './Loading'
 
 export{
     MainFeed,
@@ -11,5 +12,6 @@ export{
     Market,
     Camera,
     Challenges,
-    SignUp
+    SignUp,
+    Loading,
 }
