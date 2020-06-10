@@ -15,7 +15,7 @@ class Login extends Component {
     render() {
         return (
             <View>
-                <Button title="Sign In" onPress={() => this.props.navigation.navigate('Home')}/>
+                <Button title="Sign In" onPress={() => this.props.navigation.replace('Home')}/>
                 <Button title="Sign Up" onPress={() => this.props.navigation.push('SignUp')}/>
             </View>
         )
