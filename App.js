@@ -10,6 +10,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();
 
+
 function AuthStackScreen() {
   return(
   <AuthStack.Navigator>
@@ -18,6 +19,7 @@ function AuthStackScreen() {
   </AuthStack.Navigator>
   )
 }
+
 
 function Home() {
   return (
@@ -70,11 +72,11 @@ export default function App() {
     }, 500);
   }, []);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setUser({});
-    }, 1000);
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     setUser({});
+  //   }, 1000);
+  // }, []);
 
   return (
     // <NavigationContainer>
@@ -84,14 +86,27 @@ export default function App() {
     //   </Stack.Navigator>
     // </NavigationContainer>
     <NavigationContainer>
-      {isLoading ? (
-        <Loading/>
-       ) : user ? (
-        <Home/>
-       ) : (
-       <AuthStackScreen/>
-       )}
-    </NavigationContainer>
+      <Stack.Navigator>
+
+        {isLoading ? (
+          <Stack.Screen name="Loadin" component={Loading} />
+        ) : user ? (
+          <Stack.Screen name="Home" component={Home} options={{title: 'Push'}}/>
+        ) : (
+          <>
+            <Stack.Screen name="AuthStackScreen" component={AuthStackScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="Home" component={Home} options={{title: 'Push'}}/>
+          </>
+        )}
+
+      </Stack.Navigator>
+      
+
+
+
+      
+
+  </NavigationContainer>
 
   );
 }
