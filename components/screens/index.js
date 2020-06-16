@@ -5,6 +5,8 @@ import Market from './Market'
 import Challenges from './Challenges'
 import SignUp from './SignUp'
 import Loading from './Loading'
+import Welcome from './Welcome'
+
 
 export{
     MainFeed,
@@ -14,4 +16,5 @@ export{
     Challenges,
     SignUp,
     Loading,
+    Welcome,
 }
