@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {MainFeed, Login, Camera, Challenges, Market, SignUp, Loading} from "./components/screens";
+import {MainFeed, Login, Camera, Challenges, Market, SignUp, Loading, Welcome} from "./components/screens";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -14,6 +14,7 @@ const AuthStack = createStackNavigator();
 function AuthStackScreen() {
   return(
   <AuthStack.Navigator>
+    <AuthStack.Screen name="Welcome" component={Welcome}/>
     <AuthStack.Screen name="Login" component={Login}/>
     <AuthStack.Screen name="SignUp" component={SignUp}/>
   </AuthStack.Navigator>
@@ -83,7 +84,7 @@ export default function App() {
       <Stack.Navigator>
 
         {isLoading ? (
-          <Stack.Screen name="Loadin" component={Loading} />
+          <Stack.Screen name="Loading" component={Loading} />
         ) : user ? (
           <Stack.Screen name="Home" component={Home} options={{title: 'Push'}}/>
         ) : (
