@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View , Button} from 'react-native';
-import {MainFeed, Login, Camera, Challenges, Market, SignUp, Loading, Welcome} from "./components/screens";
+import {MainFeed, Login, Camera, Challenges, Market, SignUp, Loading, Welcome, Profile} from "./components/screens";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -71,9 +71,10 @@ export default class App extends React.Component {
                 iconName = focused ? 'ios-list-box' : 'ios-list';
               } else if (route.name === 'Challenges') {
                 iconName = focused ? 'ios-square' : 'ios-square';
-              } else if (route.name === 'Ranking') {
+              } else if (route.name === 'Profile') {
                 iconName = focused ? 'ios-square' : 'ios-square';
               }
+
 
               // You can return any component that you like here!
               return <Ionicons name={iconName} size={size} color={color} />;
@@ -87,7 +88,7 @@ export default class App extends React.Component {
           <Tab.Screen name="Main" component={MainFeed} />
           <Tab.Screen name="Market" component={Market} />
           <Tab.Screen name="Challenges" component={Challenges} />
-          <Tab.Screen name="Ranking" component={Challenges} />
+          <Tab.Screen name="Profile" component={Profile} />
 
 
 
