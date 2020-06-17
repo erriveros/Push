@@ -4,6 +4,8 @@ import Text from './Text'
 import Badge from './Badge'
 import Card from './Card'
 import Button from './Button'
+import Input from './Input'
+import Divider from './Divider'
 
 export {
     Post,
@@ -11,5 +13,7 @@ export {
     Badge,
     Button,
     Card,
-    Text
+    Text,
+    Input,
+    Divider
 };
