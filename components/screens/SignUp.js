@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, TextInput, View , TouchableOpacity} from "react-native";
 import { AppStyles } from "../AppStyles";
 
+
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ class SignUp extends React.Component {
       password: ""
     };
   }
+
 
   render() {
     return (

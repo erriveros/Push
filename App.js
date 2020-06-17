@@ -5,13 +5,32 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-const AuthStack = createStackNavigator();
+import * as firebase from 'firebase';
+import firebaseConfig from './firebaseConfig'
 
 
-function AuthStackScreen() {
+export default class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading:false,
+      isAuthenticationReady: false,
+      isAutheticated: false,
+      user: false
+
+    }
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    Tab = createBottomTabNavigator();
+    Stack = createStackNavigator();
+    AuthStack = createStackNavigator();
+
+
+  };
+
+AuthStackScreen() {
   return(
   <AuthStack.Navigator>
     <AuthStack.Screen name="Welcome" component={Welcome}/>
@@ -22,7 +41,7 @@ function AuthStackScreen() {
 }
 
 
-function Home() {
+Home() {
   return (
     <NavigationContainer independent={true}>
       <Tab.Navigator
@@ -63,47 +82,34 @@ function Home() {
   );
 }
 
-export default function App() {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [user, setUser] = React.useState(null);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(!isLoading);
-    }, 500);
-  }, []);
+  
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setUser({});
-  //   }, 1000);
-  // }, []);
-
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-
-        {isLoading ? (
-          <Stack.Screen name="Loading" component={Loading} />
-        ) : user ? (
-          <Stack.Screen name="Home" component={Home} options={{title: 'Push'}}/>
-        ) : (
-          <>
-            <Stack.Screen name="AuthStackScreen" component={AuthStackScreen} options={{headerShown: false}}/>
+  
+  render (){
+    return(
+      <NavigationContainer>
+        <Stack.Navigator>
+  
+          {this.state.isLoading ? (
+            <Stack.Screen name="Loading" component={Loading} />
+          ) : this.state.isAutheticated ? (
             <Stack.Screen name="Home" component={Home} options={{title: 'Push'}}/>
-          </>
-        )}
+          ) : (
+            <>
+              <Stack.Screen name="AuthStackScreen" component={this.AuthStackScreen} options={{headerShown: false}}/>
+              <Stack.Screen name="Home" component={this.Home} options={{title: 'Push'}}/>
+            </>
+          )}
+  
+        </Stack.Navigator>
+    </NavigationContainer>
+  
+    );
 
-      </Stack.Navigator>
-      
 
-
-
-      
-
-  </NavigationContainer>
-
-  );
+  }
+    
 }
 
 const styles = StyleSheet.create({
