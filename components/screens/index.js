@@ -6,6 +6,7 @@ import Challenges from './Challenges'
 import SignUp from './SignUp'
 import Loading from './Loading'
 import Welcome from './Welcome'
+import Profile from './Profile'
 
 
 export{
@@ -17,4 +18,5 @@ export{
     SignUp,
     Loading,
     Welcome,
+    Profile
 }
