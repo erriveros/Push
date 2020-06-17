@@ -42,7 +42,6 @@ export default class App extends React.Component {
   onAuthStateChanged = (user) => {
     this.setState({isAuthenticationReady: true});
     this.setState({isAutheticated: !!user});
-    console.log(user)
   }
 
   AuthStackScreen() {

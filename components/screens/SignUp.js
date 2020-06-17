@@ -19,9 +19,13 @@ class SignUp extends React.Component {
   onSignUpPress(){
       Alert.alert(this.state.password, this.state.email)
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => {
+        .then((data) => {
+            firebase.database().ref('users/' + data.user.uid).set({
+                name: this.state.fullname,
+                phone:this.state.phone,
+              });
 
-
+            
         }, (error) => {
             Alert.alert(error.message)
         })
