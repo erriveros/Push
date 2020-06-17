@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View , TouchableOpacity} from "react-native";
+import { StyleSheet, Text, TextInput, View , TouchableOpacity, Alert} from "react-native";
 import { AppStyles } from "../AppStyles";
+import * as firebase from 'firebase'
 
 
 class SignUp extends React.Component {
@@ -14,6 +15,16 @@ class SignUp extends React.Component {
       email: "",
       password: ""
     };
+  }
+  onSignUpPress(){
+      Alert.alert(this.state.password, this.state.email)
+      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+
+
+        }, (error) => {
+            Alert.alert(error.message)
+        })
   }
 
 
@@ -65,7 +76,7 @@ class SignUp extends React.Component {
         <TouchableOpacity
           containerStyle={[styles.facebookContainer, { marginTop: 50 }]}
           style={styles.facebookText}
-          onPress={() => this.props.navigation.replace('Home')}
+          onPress={() => this.onSignUpPress()}
         >
           <Text>Sign Up</Text>
         </TouchableOpacity>

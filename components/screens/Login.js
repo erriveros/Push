@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, TextInput, Button, TextComponent} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, TextInput, Button, TextComponent, Alert} from 'react-native';
 import SignUp from './SignUp';
 import { AppStyles } from '../AppStyles'
+import * as firebase from 'firebase';
+
 
 
 
@@ -16,7 +18,13 @@ class Login extends Component {
       }
 
     onPressLogin(){
-        this.props.navigation.replace('Home');
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then( () => {
+                
+            }, (error) => {
+                Alert.alert(error.message)
+            });
+        //this.props.navigation.replace('Home');
     }
 
     onPressSignUp(){
